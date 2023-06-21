@@ -43,7 +43,7 @@ public final class MahkoUtils extends JavaPlugin implements Listener {
                             target.isBefore( LocalTime.parse( "12:00:00" ))
 
                     );
-            //checks day of week test
+            //checks day of week
             if (day != 7){
                 if (day != 1){
                     if (targetInZone) {
