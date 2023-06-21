@@ -1,0 +1,5 @@
+name: MahkoUtils
+version: '${project.version}'
+main: me.mahko.mahkoutils.MahkoUtils
+api-version: '1.20'
+author: Mahko
