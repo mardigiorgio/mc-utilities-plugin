@@ -1,13 +1,19 @@
 Mahko Utils
+
 Description
+
 This custom Minecraft plugin has been designed specifically for a private Minecraft server, aiming to enhance the gaming experience with a range of custom features and commands. By integrating this plugin into your server, you can unlock new possibilities and add unique elements to your gameplay.
 
 Features
+
 Custom Commands: The plugin introduces a set of custom commands that expand the server's functionality and offer additional control to players and administrators. These commands are designed to be intuitive and user-friendly, providing easy access to various features.
 
-Enhanced Gameplay: Experience new gameplay elements and mechanics that are not available in the vanilla Minecraft experience. The plugin introduces custom gameplay features that can be tailored to suit your server's specific needs and preferences.
+Enhanced Gameplay: 
+
+Experience new gameplay elements and mechanics that are not available in the vanilla Minecraft experience. The plugin introduces custom gameplay features that can be tailored to suit your server's specific needs and preferences.
 
 Installation
+
 To install the custom Minecraft plugin, follow these steps:
 
 Ensure that you have a Minecraft server set up and running.
