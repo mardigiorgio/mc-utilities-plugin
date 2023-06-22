@@ -1,62 +1,50 @@
 package me.mahko.mahkoutils;
-
+import me.mahko.mahkoutils.listeners.midnightkicker;
 import me.mahko.mahkoutils.tasks.midnightkick;
-import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
+import net.luckperms.api.LuckPerms;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+import me.mahko.mahkoutils.commands.upgradehome;
 
-import java.time.LocalTime;
-import java.util.Calendar;
 
 public final class MahkoUtils extends JavaPlugin implements Listener {
 
-
+    private static MahkoUtils plugin;
+    private static LuckPerms luckPerms;
 
     @Override
     public void onEnable() {
-
         saveDefaultConfig();
+        plugin = this;
+        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
 
-        getServer().getPluginManager().registerEvents(this, this);
+        if (provider != null) {
+            luckPerms = provider.getProvider();
+            getLogger().info("LuckPerms API loaded successfully!");
+        } else {
+            getLogger().severe("LuckPerms API failed to load, disabling dependent features.");
+        }
+
+
         if(getConfig().getBoolean("tasks.midnightshutdown")) {
-            BukkitTask midnight = new midnightkick().runTaskTimer(this, 0L, 600);
+            BukkitTask midnight = new midnightkick().runTaskTimer(this, 0L, 600L);
             getLogger().info("MidnightKick Enabled");
         } else {
             getLogger().info("MidnightKick Disabled");
         }
-
+        getServer().getPluginManager().registerEvents(new midnightkicker(), this);
+        getCommand("upgradehome").setExecutor(new upgradehome());
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        if(getConfig().getBoolean("tasks.midnightshutdown")) {
-            Calendar calendar = Calendar.getInstance();
-            int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-            LocalTime target = LocalTime.now();
-            Boolean targetInZone =
-                    (target.isAfter( LocalTime.parse( "05:00:00" ))
-                            &&
-                            target.isBefore( LocalTime.parse( "12:00:00" ))
-
-                    );
-            //checks day of week
-            if (day != 7){
-                if (day != 1){
-                    if (targetInZone) {
-                        event.getPlayer().kickPlayer(ChatColor.RED + "Go to bed, come back at 7 AM");
-                }
-            }
-
-
-            }
-
-            }
-
-        }
-
+    public static MahkoUtils getPlugin() {
+        return  plugin;
     }
+
+    public static LuckPerms getLuckPermsApi() {
+        return luckPerms;
+    }
+}
 

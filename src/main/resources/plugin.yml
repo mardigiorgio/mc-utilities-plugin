@@ -3,3 +3,10 @@ version: '${project.version}'
 main: me.mahko.mahkoutils.MahkoUtils
 api-version: '1.20'
 author: Mahko
+permissions :
+  mahkoutils.admin:
+    description: "For admins"
+commands:
+  upgradehome:
+    description: Adds one more max home. 32 Diamond Blocks for second home and 64 Diamond Blocks for third home.
+    usage: /upgradehome

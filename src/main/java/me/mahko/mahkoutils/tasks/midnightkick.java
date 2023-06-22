@@ -30,7 +30,10 @@ public class midnightkick extends BukkitRunnable {
                     if (targetInZone) {
                         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
                             Bukkit.getLogger().info("Past midnight kicking all players");
-                            player.kickPlayer(ChatColor.RED + "Go to bed, come back at 7 AM");
+                            if (!player.hasPermission("mahkoutils.admin")){
+                                player.kickPlayer(ChatColor.RED + "Go to bed, come back at 7 AM");
+                            }
+
 
                         }
                     }
