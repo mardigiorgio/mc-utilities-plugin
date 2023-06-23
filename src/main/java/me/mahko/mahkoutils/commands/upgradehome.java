@@ -15,7 +15,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import net.luckperms.api.LuckPerms;
 
 import java.util.*;
-
+import java.util.List;
 
 public class upgradehome implements CommandExecutor {
 
@@ -25,9 +25,6 @@ public class upgradehome implements CommandExecutor {
     UUID uid;
     User user;
     int cost;
-
-
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args) {
@@ -46,7 +43,7 @@ public class upgradehome implements CommandExecutor {
         if (hasPermission(user, "cmi.command.sethome.2")) {cost=64;}
 
         if (hasPermission(user, "cmi.command.sethome.3")) {
-            player.sendRawMessage(ChatColor.RED + "Max home upgrade reached!");
+            player.sendRawMessage(ChatColor.RED + "You have reached the sethome upgrade limit.");
             return true;
         }
 
@@ -60,8 +57,8 @@ public class upgradehome implements CommandExecutor {
             }
 
             if (i >= cost) {
-                player.sendRawMessage(ChatColor.YELLOW + "This will remove " + cost +" diamond blocks from your inventory, are you sure? " + ChatColor.GREEN + "(You have 10 seconds to /upgradehome confirm)");
-                Bukkit.getLogger().info("Player has 32 diamond-blocks");
+                player.sendRawMessage(ChatColor.YELLOW + "This will cost " + cost + " diamond blocks. " + ChatColor.BOLD + ChatColor.GREEN + "(/upgradehome confirm)");
+                Bukkit.getLogger().info("Player has " + i + " diamond-blocks");
                 uids.add(player.getUniqueId().toString());
                 new BukkitRunnable(){
                     @Override
@@ -69,13 +66,13 @@ public class upgradehome implements CommandExecutor {
                         Boolean finalTimeout = timeout;
                         if (finalTimeout) {
                             uids.clear();
-                            player.sendRawMessage(ChatColor.RED + "Upgrade expired!");
+                            player.sendRawMessage(ChatColor.RED + "Upgrade has expired.");
                         }
                     }
                 }.runTaskLater(MahkoUtils.getPlugin(), 200L);
 
             } else {
-                player.sendRawMessage(ChatColor.RED + "You need " + cost + " diamond blocks for this upgrade!");
+                player.sendRawMessage(ChatColor.RED + "You need " + cost + " diamond blocks for this upgrade.");
                 Bukkit.getLogger().info("Player does not have " + cost + " diamond-blocks");
             }
 
@@ -98,17 +95,17 @@ public class upgradehome implements CommandExecutor {
                             if (i >= cost) {
                                 if(hasPermission(user, "cmi.command.sethome.2")) {
                                     addPermission(uid, "cmi.command.sethome.3");
-                                    player.sendRawMessage(ChatColor.GREEN + "Home limit upgraded to 3! (Maximum)");
+                                    player.sendRawMessage(ChatColor.GREEN + "Max sethome limit upgraded to 3! (Maximum)");
                                 } else {
                                     addPermission(uid, "cmi.command.sethome.2");
-                                    player.sendRawMessage(ChatColor.GREEN + "Home limit upgraded to 2!");
+                                    player.sendRawMessage(ChatColor.GREEN + "Max sethome limit upgraded to 2!");
                                 }
                                 uids.clear();
                                 return true;
 
 
                             } else {
-                                player.sendRawMessage(ChatColor.RED + "You need " + cost + " diamond blocks for this upgrade!");
+                                player.sendRawMessage(ChatColor.RED + "You need " + cost + " diamond blocks for this upgrade.");
                                 Bukkit.getLogger().info("Player does not have 32 diamond-blocks");
                             }
                             Bukkit.getLogger().info("Diamond Blocks confirmed " + i);
@@ -116,11 +113,11 @@ public class upgradehome implements CommandExecutor {
                         }
 
                     }
-                    player.sendRawMessage(ChatColor.RED + "Upgradehome not awaiting confirmation.");
+                    player.sendRawMessage(ChatColor.RED + "Upgradehome command not awaiting confirmation.");
                     return true;
                 }
 
-                player.sendRawMessage(ChatColor.RED + "Upgradehome not awaiting confirmation.");
+                player.sendRawMessage(ChatColor.RED + "Upgradehome command not awaiting confirmation.");
                 return true;
             }
         }else {
