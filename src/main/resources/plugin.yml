@@ -9,4 +9,4 @@ permissions :
 commands:
   upgradehome:
     description: Adds one more max home. 32 Diamond Blocks for second home and 64 Diamond Blocks for third home.
-    usage: /upgradehome
+    usage: /upgradeHome

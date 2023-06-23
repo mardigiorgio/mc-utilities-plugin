@@ -36,7 +36,7 @@ public class upgradehome implements CommandExecutor {
         cost = 32;
 
         Player player = (Player) sender;
-        
+
         user = luckPerms.getUserManager().getUser(player.getUniqueId());
         uid = player.getUniqueId();
 
@@ -57,7 +57,7 @@ public class upgradehome implements CommandExecutor {
             }
 
             if (i >= cost) {
-                player.sendRawMessage(ChatColor.YELLOW + "This will cost " + cost + " diamond blocks. " + ChatColor.GREEN + "(/upgradehome confirm)");
+                player.sendRawMessage(ChatColor.YELLOW + "This will cost " + cost + " diamond blocks. " + ChatColor.GREEN + "(/upgradeHome confirm)");
                 Bukkit.getLogger().info("Player has " + i + " diamond-blocks");
                 uids.add(player.getUniqueId().toString());
                 new BukkitRunnable(){

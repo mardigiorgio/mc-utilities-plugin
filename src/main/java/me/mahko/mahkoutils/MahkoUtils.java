@@ -1,4 +1,6 @@
 package me.mahko.mahkoutils;
+import me.mahko.mahkoutils.commands.upgradehome;
+import me.mahko.mahkoutils.commands.upgradeHomeCompletion;
 import me.mahko.mahkoutils.listeners.midnightkicker;
 import me.mahko.mahkoutils.tasks.midnightkick;
 import net.luckperms.api.LuckPerms;
@@ -7,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-import me.mahko.mahkoutils.commands.upgradehome;
 
 
 public final class MahkoUtils extends JavaPlugin implements Listener {
@@ -37,6 +38,7 @@ public final class MahkoUtils extends JavaPlugin implements Listener {
         }
         getServer().getPluginManager().registerEvents(new midnightkicker(), this);
         getCommand("upgradehome").setExecutor(new upgradehome());
+        getCommand("upgradehome").setTabCompleter(new upgradeHomeCompletion());
     }
 
     public static MahkoUtils getPlugin() {
