@@ -27,13 +27,13 @@ public class midnightkick extends BukkitRunnable {
         //checks day of week
         if (day != 7) {
             if (day != 1) {
-                    if (targetInZone) {
-                        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-                            if (!player.hasPermission("mahkoutils.admin")){
-                                player.kickPlayer(ChatColor.RED + "Go to bed, come back at 7 AM");
-                            }
+                if (targetInZone) {
+                    for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                        if (!player.hasPermission("mahkoutils.admin")){
+                            player.kickPlayer(ChatColor.RED + "Go to bed, come back at 7 AM");
                         }
                     }
+                }
 
             }
 
