@@ -33,14 +33,14 @@ public class upgradehome implements CommandExecutor {
             return true;
         }
 
-        cost = 32;
+        cost = 16;
 
         Player player = (Player) sender;
 
         user = luckPerms.getUserManager().getUser(player.getUniqueId());
         uid = player.getUniqueId();
 
-        if (hasPermission(user, "cmi.command.sethome.2")) {cost=64;}
+        if (hasPermission(user, "cmi.command.sethome.2")) {cost=32;}
 
         if (hasPermission(user, "cmi.command.sethome.3")) {
             player.sendRawMessage(ChatColor.RED + "You have reached the sethome upgrade limit.");
