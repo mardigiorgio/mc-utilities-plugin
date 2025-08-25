@@ -1,13 +1,13 @@
-# MahkoUtils
+# mc-utilities-plugin
 
-MahkoUtils is a lightweight plugin for Minecraft servers that adds a few quality-of-life utilities. It integrates with LuckPerms and provides tools that encourage healthy play habits and configurable player home limits.
+mc-utilities-plugin is a lightweight plugin for Minecraft servers that adds a few quality-of-life utilities. It integrates with LuckPerms and provides tools that encourage healthy play habits and configurable player home limits.
 
 ## Features
 - **MidnightKick**: Automatically removes non-admin players during early morning hours to nudge them toward logging off and getting rest.
 - **/upgradehome**: Command for players to spend diamond blocks to increase their maximum number of homes, with permissions managed through LuckPerms.
 
 ## Building
-MahkoUtils uses Maven. To build the plugin, run:
+mc-utilities-plugin uses Maven. To build the plugin, run:
 
 ```
 mvn package
